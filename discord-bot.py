@@ -3,7 +3,7 @@ import subprocess
 import discord
 from dotenv import load_dotenv
 
-
+load_dotenv()
 client = discord.Client()
 
 DISCORD_TOKEN = os.environ["DISCORD_TOKEN"]
