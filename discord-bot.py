@@ -83,8 +83,8 @@ def stop_server():
 # サーバのステータスを確認するメソッド
 def describe_server():
     command = f'/snap/bin/gcloud --account={SERVICE_ACCOUNT_ID} compute instances describe {INSTANCE_NAME} --project {PROJECT_NAME} --zone {INSTANCE_ZONE}'
-    res = subprocess.call(command.split())
-    return res
+    res = subprocess.run(command.split(),stdout=subprocess.PIPE)
+    return res.stdout.decode("ascii")
 
 # Discordのクライアントを起動する
 client.run(DISCORD_TOKEN)
