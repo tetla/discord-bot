@@ -83,6 +83,12 @@ async def on_message(message):
         await message.channel.send('%sチャンの今日の運勢は%sにゃ' % (message.author.name, fortune))
 
 
+    if message.content == '/nana':
+        await message.channel.send('ミミミン！ミミミン！ウーサミン！')
+
+    if message.content == '/kagawa':
+        await message.channel.send('ゲームは1日1時間までにゃ')
+
 # サーバを開始させるメソッド
 def start_server():
     command = f'/snap/bin/gcloud --account={SERVICE_ACCOUNT_ID} compute instances start {INSTANCE_NAME} --project {PROJECT_NAME} --zone {INSTANCE_ZONE}'
