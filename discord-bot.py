@@ -2,6 +2,7 @@ import os
 import subprocess
 import discord
 from discord.ext import tasks
+from datetime import datetime
 import requests
 import random
 from dotenv import load_dotenv
@@ -94,7 +95,7 @@ async def on_message(message):
 async def loop():
     # 現在の時刻
     now = datetime.now().strftime('%H:%M')
-    if now == '15:00': # 日本時間 00:00
+    if now == '15:02': # 日本時間 00:00
         channel = client.get_channel(619199699555057669)
         await channel.send('こんな時間までゲームしてるの？Pチャンすごーい！')
 
