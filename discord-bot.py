@@ -59,7 +59,7 @@ async def on_message(message):
         await message.channel.send('にゃーん')
     
     if message.content == '/mikunyan':
-        await message.channel.send('なぁに%sチャン' % message.auther.name)
+        await message.channel.send('なぁに%sチャン' % message.author.name)
 
     if message.content == '/riina':
         await message.channel.send('りーなチャン！？')
@@ -79,7 +79,7 @@ async def on_message(message):
     
     if message.content == '/omikuji':
         fortune = pull_omikuji()
-        await message.channel.send('%sチャンの今日の運勢は%sにゃ' % (message.auther.name, fortune))
+        await message.channel.send('%sチャンの今日の運勢は%sにゃ' % (message.author.name, fortune))
 
 
 # サーバを開始させるメソッド
