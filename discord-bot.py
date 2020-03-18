@@ -82,12 +82,20 @@ async def on_message(message):
         fortune = pull_omikuji()
         await message.channel.send('%sチャンの今日の運勢は%sにゃ' % (message.author.name, fortune))
 
-
     if message.content == '/nana':
         await message.channel.send('ミミミン！ミミミン！ウーサミン！')
 
     if message.content == '/kagawa':
         await message.channel.send('ゲームは1日1時間までにゃ')
+
+# 60秒に一回ループ
+@tasks.loop(seconds=60)
+async def loop():
+    # 現在の時刻
+    now = datetime.now().strftime('%H:%M')
+    if now == '15:00': # 日本時間 00:00
+        channel = client.get_channel(619199699555057669)
+        await channel.send('こんな時間までゲームしてるの？Pチャンすごーい！')
 
 # サーバを開始させるメソッド
 def start_server():
@@ -137,7 +145,8 @@ def pull_omikuji():
     return fortune
 
 
-
+# ループ処理実行
+loop.start()
 
 # Discordのクライアントを起動する
 client.run(DISCORD_TOKEN)
