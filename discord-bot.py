@@ -95,8 +95,8 @@ async def on_message(message):
 async def loop():
     # 現在の時刻
     now = datetime.now().strftime('%H:%M')
-    if now == '15:02': # 日本時間 00:00
-        channel = client.get_channel(619199699555057669)
+    if now == '15:00': # 日本時間 00:00
+        channel = client.get_channel(689851923414646913) # みくちゃんのお部屋のID
         await channel.send('こんな時間までゲームしてるの？Pチャンすごーい！')
 
 # サーバを開始させるメソッド
@@ -145,7 +145,6 @@ def pull_omikuji():
     else:
         fortune = "大凶"
     return fortune
-
 
 # ループ処理実行
 loop.start()
