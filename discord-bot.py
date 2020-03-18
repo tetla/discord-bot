@@ -74,8 +74,9 @@ async def on_message(message):
         await message.channel.send('るたニキのボーナスで焼肉にゃ')
     
     if message.content == '/tokyo':
-        mes = get_weather('130010') # 東京は 130010
-        await message.channel.send('%s にゃ' % mes)
+        today, tomorrow = get_weather('130010') # 東京は 130010
+        await message.channel.send('%s' % today)
+        await message.channel.send('%s にゃ' % tomorrow)
     
     if message.content == '/omikuji':
         fortune = pull_omikuji()
@@ -105,8 +106,13 @@ def get_weather(city_code):
     url = 'http://weather.livedoor.com/forecast/webservice/json/v1'
     payload = {'city': city_code} 
     tenki = requests.get(url, params=payload).json()
-    mes = str(tenki['forecasts']['0']['data']) + " の東京の天気は " + str(tenki['forecasts']['0']['telop']) + "。最高気温は" + str(tenki['forecasts']['0']['temparature']['max']['celsius'])
-    return mes
+    today = tenki['forecasts'][0]['date'] + " の東京の天気は " + tenki['forecasts'][0]['telop']
+    if tenki['forecasts'][0]['temperature']['max']['celsius'] is not None:
+        today = today + "。最高気温は" + tenki['forecasts'][0]['temperature']['max']['celsius']
+    tomorrow = tenki['forecasts'][1]['date'] + " の東京の天気は " + tenki['forecasts'][1]['telop']
+    if tenki['forecasts'][1]['temperature']['max']['celsius'] is not None:
+        tomorrow = tomorrow + "。最高気温は" + tenki['forecasts'][1]['temperature']['max']['celsius']
+    return (today, tomorrow)
 
 def pull_omikuji():
     num = random.random()
