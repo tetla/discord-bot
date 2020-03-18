@@ -1,6 +1,7 @@
 import os
 import subprocess
 import discord
+import requests
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -67,6 +68,11 @@ async def on_message(message):
 
     if message.content == '/ruta':
         await message.channel.send('るたニキのボーナスで焼肉にゃ')
+    
+    if message.content == '/tokyo':
+        mes = get_weather('130010') # 東京は 130010
+        await message.channel.send('%s にゃ' % mes)
+
 
 # サーバを開始させるメソッド
 def start_server():
@@ -85,6 +91,14 @@ def describe_server():
     command = f'/snap/bin/gcloud --account={SERVICE_ACCOUNT_ID} compute instances describe {INSTANCE_NAME} --project {PROJECT_NAME} --zone {INSTANCE_ZONE}'
     res = subprocess.run(command.split(),stdout=subprocess.PIPE)
     return res.stdout.decode("ascii")
+
+# 東京の天気を取得するメソッド
+def get_weather(city_code):
+    url = 'http://weather.livedoor.com/forecast/webservice/json/v1'
+    payload = {'city': city_code} 
+    tenki = requests.get(url, params=payload).json()
+    mes = tenki['forecasts']['0']['data'] + " の東京の天気は " + tenki['forecasts']['0']['telop'] + "。最高気温は" + tenki['forecasts']['0']['temparature']['max']['celsius']
+    return mes
 
 # Discordのクライアントを起動する
 client.run(DISCORD_TOKEN)
