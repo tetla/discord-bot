@@ -105,7 +105,7 @@ def get_weather(city_code):
     url = 'http://weather.livedoor.com/forecast/webservice/json/v1'
     payload = {'city': city_code} 
     tenki = requests.get(url, params=payload).json()
-    mes = tenki['forecasts']['0']['data'] + " の東京の天気は " + tenki['forecasts']['0']['telop'] + "。最高気温は" + tenki['forecasts']['0']['temparature']['max']['celsius']
+    mes = str(tenki['forecasts']['0']['data']) + " の東京の天気は " + str(tenki['forecasts']['0']['telop']) + "。最高気温は" + str(tenki['forecasts']['0']['temparature']['max']['celsius'])
     return mes
 
 def pull_omikuji():
