@@ -107,10 +107,10 @@ def get_weather(city_code):
     payload = {'city': city_code} 
     tenki = requests.get(url, params=payload).json()
     today = tenki['forecasts'][0]['date'] + " の東京の天気は " + tenki['forecasts'][0]['telop']
-    if tenki['forecasts'][0]['temperature']['max']['celsius'] is not None:
+    if tenki['forecasts'][0]['temperature']['max'] is not None:
         today = today + "。最高気温は" + tenki['forecasts'][0]['temperature']['max']['celsius']
     tomorrow = tenki['forecasts'][1]['date'] + " の東京の天気は " + tenki['forecasts'][1]['telop']
-    if tenki['forecasts'][1]['temperature']['max']['celsius'] is not None:
+    if tenki['forecasts'][1]['temperature']['max'] is not None:
         tomorrow = tomorrow + "。最高気温は" + tenki['forecasts'][1]['temperature']['max']['celsius']
     return (today, tomorrow)
 
