@@ -2,6 +2,7 @@ import os
 import subprocess
 import discord
 import requests
+import random
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -56,6 +57,9 @@ async def on_message(message):
     # [TODO]肥大化してきたら分割する。
     if message.content == '/miku':
         await message.channel.send('にゃーん')
+    
+    if message.content == '/mikunyan':
+        await message.channel.send('なぁに%sチャン' % message.auther.name)
 
     if message.content == '/riina':
         await message.channel.send('りーなチャン！？')
@@ -72,6 +76,10 @@ async def on_message(message):
     if message.content == '/tokyo':
         mes = get_weather('130010') # 東京は 130010
         await message.channel.send('%s にゃ' % mes)
+    
+    if message.content == '/omikuji':
+        fortune = pull_omikuji()
+        await message.channel.send('%sチャンの今日の運勢は%sにゃ' % (message.auther.name, fortune))
 
 
 # サーバを開始させるメソッド
@@ -99,6 +107,25 @@ def get_weather(city_code):
     tenki = requests.get(url, params=payload).json()
     mes = tenki['forecasts']['0']['data'] + " の東京の天気は " + tenki['forecasts']['0']['telop'] + "。最高気温は" + tenki['forecasts']['0']['temparature']['max']['celsius']
     return mes
+
+def pull_omikuji():
+    num = random.random()
+    if num < 0.01:
+        fortune = "猫吉"
+    elif num < 0.1:
+        fortune = "大吉"
+    elif num < 0.4:
+        fortune = "中吉"
+    elif num < 0.7:
+        fortune = "小吉"
+    elif num < 0.9:
+        fortune = "凶"
+    else:
+        fortune = "大凶"
+    return fortune
+
+
+
 
 # Discordのクライアントを起動する
 client.run(DISCORD_TOKEN)
