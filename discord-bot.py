@@ -7,6 +7,8 @@ import requests
 import random
 from dotenv import load_dotenv
 
+import markov
+
 load_dotenv()
 client = discord.Client()
 
@@ -15,6 +17,10 @@ SERVICE_ACCOUNT_ID = os.environ["SERVICE_ACCOUNT_ID"]
 PROJECT_NAME = os.environ["PROJECT_NAME"]
 INSTANCE_ZONE = os.environ["INSTANCE_ZONE"]
 INSTANCE_NAME = os.environ["INSTANCE_NAME"]
+
+# load markov model
+with open('model/maekawa_serif.json') as f:
+    markov_json = f.read()
 
 @client.event
 async def on_ready():
@@ -89,6 +95,10 @@ async def on_message(message):
 
     if message.content == '/kagawa':
         await message.channel.send('ゲームは1日1時間までにゃ')
+    
+    if message.content == '/talk':
+        sentence = markov.make_sentences(markov_json)
+        await message.channel.send(sentence)
 
 # 60秒に一回ループ
 @tasks.loop(seconds=60)
