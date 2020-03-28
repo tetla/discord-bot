@@ -103,7 +103,7 @@ async def on_message(message):
         sentence = markov.make_sentences(markov_json)
         await message.channel.send(sentence)
     
-    if message.content == '/talk':
+    if message.content == '/hash':
         hash_val = get_hash()
         await message.channel.send(hash_val)
 
