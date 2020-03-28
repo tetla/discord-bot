@@ -24,8 +24,11 @@ with open('model/maekawa_serif.json') as f:
 
 @client.event
 async def on_ready():
-    print('ログイン')
-    print(client.user.name)
+    # Gitのハッシュ値を確認する。
+    hash_val = get_hash()
+    print('Login : %s' % hash_val)
+    channel = client.get_channel(689851923414646913) # みくちゃんのお部屋のID
+    await channel.send('起動完了！ 現在のバージョンは %s にゃ' % hash_val)
 
 @client.event
 async def on_message(message):
@@ -155,6 +158,11 @@ def pull_omikuji():
     else:
         fortune = "大凶"
     return fortune
+
+def get_hash():
+    with open("./hash.txt", mode='r') as f:
+        hash_val = f.readline()
+    return hash_val
 
 # ループ処理実行
 loop.start()
