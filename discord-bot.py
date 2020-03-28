@@ -162,7 +162,7 @@ def pull_omikuji():
 def get_hash():
     with open("./hash.txt", mode='r') as f:
         hash_val = f.readline()
-    return hash_val
+    return hash_val.strip()
 
 # ループ処理実行
 loop.start()
