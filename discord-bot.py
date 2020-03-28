@@ -106,6 +106,7 @@ async def on_message(message):
     if message.content == '/hash':
         hash_val = get_hash()
         await message.channel.send(hash_val)
+        
 
 # 60秒に一回ループ
 @tasks.loop(seconds=60)
