@@ -26,7 +26,6 @@ with open('model/maekawa_serif.json') as f:
 async def on_ready():
     # Gitのハッシュ値を確認する。
     hash_val = get_hash()
-    print('Login : %s' % hash_val)
     channel = client.get_channel(689851923414646913) # みくちゃんのお部屋のID
     await channel.send('起動完了！ 現在のバージョンは %s にゃ' % hash_val)
 
@@ -106,7 +105,7 @@ async def on_message(message):
     if message.content == '/hash':
         hash_val = get_hash()
         await message.channel.send(hash_val)
-        
+
 
 # 60秒に一回ループ
 @tasks.loop(seconds=60)
