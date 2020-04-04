@@ -24,10 +24,11 @@ with open('model/maekawa_serif.json') as f:
 
 @client.event
 async def on_ready():
+    print("起動したにゃ")
     # Gitのハッシュ値を確認する。
-    hash_val = get_hash()
-    channel = client.get_channel(689851923414646913) # みくちゃんのお部屋のID
-    await channel.send('起動完了！ 現在のバージョンは %s にゃ' % hash_val)
+    # hash_val = get_hash()
+    # channel = client.get_channel(689851923414646913) # みくちゃんのお部屋のID
+    # await channel.send('起動完了！ 現在のバージョンは %s にゃ' % hash_val)
 
 @client.event
 async def on_message(message):
