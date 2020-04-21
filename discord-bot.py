@@ -88,8 +88,8 @@ async def on_message(message):
     if message.content == '/ruta':
         ruta_message = "「バンダイナムコエンターテインメントフェスティバル」が初のBlu-ray化！バンダイナムコグループから生まれたアイドルや、関連シリーズのテーマソング・主題歌を担当する豪華アーティスト達が、タイトルの垣根を越えて集結したエンターテインメントライブの、DAY1・DAY2を１パッケージに収録したBlu-rayです。"
         ruta_url = "https://shop.asobistore.jp/products/detail/149275-00-00-00"
-        await message.channel.send('@るた ' + ruta_message)
-        await message.channel.send('@るた ' + ruta_url)
+        await message.channel.send('<@618849773906165770> ' + ruta_message)
+        await message.channel.send('<@618849773906165770> ' + ruta_url)
     
     if message.content == '/tokyo':
         today, tomorrow = get_weather('130010') # 東京は 130010
