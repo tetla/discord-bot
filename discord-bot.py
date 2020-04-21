@@ -6,10 +6,14 @@ from datetime import datetime
 import requests
 import random
 from dotenv import load_dotenv
+from tinydb import TinyDB, Query
 
 import markov
 
 load_dotenv()
+
+db = TinyDB('db.json')
+
 client = discord.Client()
 
 DISCORD_TOKEN = os.environ["DISCORD_TOKEN"]
