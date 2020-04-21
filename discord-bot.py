@@ -86,7 +86,10 @@ async def on_message(message):
         await message.channel.send('それもまたアイカツにゃ')
 
     if message.content == '/ruta':
-        await message.channel.send('るたニキのボーナスで焼肉にゃ')
+        ruta_message = "「バンダイナムコエンターテインメントフェスティバル」が初のBlu-ray化！バンダイナムコグループから生まれたアイドルや、関連シリーズのテーマソング・主題歌を担当する豪華アーティスト達が、タイトルの垣根を越えて集結したエンターテインメントライブの、DAY1・DAY2を１パッケージに収録したBlu-rayです。"
+        ruta_url = "https://shop.asobistore.jp/products/detail/149275-00-00-00"
+        await message.channel.send('@るた ' + ruta_message)
+        await message.channel.send('@るた ' + ruta_url)
     
     if message.content == '/tokyo':
         today, tomorrow = get_weather('130010') # 東京は 130010
@@ -110,6 +113,10 @@ async def on_message(message):
     if message.content == '/hash':
         hash_val = get_hash()
         await message.channel.send(hash_val)
+    
+    if message.content == '/remaind':
+        hoge = remainder(message)
+        await message.channel.send(hoge)
 
 
 # 60秒に一回ループ
@@ -172,6 +179,16 @@ def get_hash():
     with open("./hash.txt", mode='r') as f:
         hash_val = f.readline()
     return hash_val.strip()
+
+def remainder(message):
+    '''
+    message = /remainder add date[yyyy/MM/dd] time[hh:mm] message user
+    '''
+    print(message.content)
+    _, command, date, time, content, user = message.content.split(' ')
+    return user
+
+
 
 # ループ処理実行
 loop.start()
