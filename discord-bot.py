@@ -86,8 +86,8 @@ async def on_message(message):
         await message.channel.send('それもまたアイカツにゃ')
 
     if message.content == '/ruta':
-        ruta_message = "「バンダイナムコエンターテインメントフェスティバル」が初のBlu-ray化！バンダイナムコグループから生まれたアイドルや、関連シリーズのテーマソング・主題歌を担当する豪華アーティスト達が、タイトルの垣根を越えて集結したエンターテインメントライブの、DAY1・DAY2を１パッケージに収録したBlu-rayです。"
-        ruta_url = "https://shop.asobistore.jp/products/detail/149275-00-00-00"
+        ruta_message = "【特装版は5/8(金)まで！】Funky Dancing!公演を振り返るBlu-rayが遂に映像化！"
+        ruta_url = "https://shop.asobistore.jp/products/detail/149935-00-00-t_as_sp"
         await message.channel.send('<@618849773906165770> ' + ruta_message)
         await message.channel.send('<@618849773906165770> ' + ruta_url)
     
