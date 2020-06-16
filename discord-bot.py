@@ -86,8 +86,8 @@ async def on_message(message):
         await message.channel.send('それもまたアイカツにゃ')
 
     if message.content == '/ruta':
-        ruta_message = "「THE IDOLM@STER SHINY COLORS デビ太郎 VS ジャスティスV」と「THE IDOLM@STER SHINY COLORS SOLO COLLECTION -2ndLIVE STEP INTO THE SUNSET SKY-」のCDを、6月12日より期間限定で販売することが決定いたしました。"
-        ruta_url = "https://idolmaster.jp/blog/?p=82217"
+        ruta_message = "高さ方向、横方向、後ろ方向、さらに画面奥行き方向にもスピーカーがあるような立体的な音場空間を5.1chスピーカーのままで再現する独自技術を搭載※。映画はもちろん、音楽も驚きの音場を実現します。"
+        ruta_url = "https://www.amazon.co.jp/dp/B00MNZMWNI/"
         await message.channel.send('<@618849773906165770> ' + ruta_message)
         await message.channel.send('<@618849773906165770> ' + ruta_url)
     
