@@ -90,6 +90,9 @@ async def on_message(message):
         ruta_url = "https://www.amazon.co.jp/dp/B08BZQK78R"
         await message.channel.send('<@618849773906165770> ' + ruta_message)
         await message.channel.send('<@618849773906165770> ' + ruta_url)
+
+    if message.content == '/goyo':
+        await message.channel.send('知育菓子でも作ってろよ')
     
     if message.content == '/tokyo':
         today, tomorrow = get_weather('130010') # 東京は 130010
