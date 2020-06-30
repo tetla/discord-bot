@@ -86,8 +86,8 @@ async def on_message(message):
         await message.channel.send('それもまたアイカツにゃ')
 
     if message.content == '/ruta':
-        ruta_message = "高さ方向、横方向、後ろ方向、さらに画面奥行き方向にもスピーカーがあるような立体的な音場空間を5.1chスピーカーのままで再現する独自技術を搭載※。映画はもちろん、音楽も驚きの音場を実現します。"
-        ruta_url = "https://www.amazon.co.jp/dp/B00MNZMWNI/"
+        ruta_message = "「クソリプかるた」とは読み手が読む「投稿文」に対して、正しい「クソリプ」の札を取り合うかるた遊びです。参加者はクソリプを投稿した人の気持ちになって、「自分ならどんなクソリプをするか」を考えながら札を選びます。クソリプする側の心情をすばやく理解し、たくさんのクソリプを取りましょう。"
+        ruta_url = "https://www.amazon.co.jp/dp/B08BZQK78R"
         await message.channel.send('<@618849773906165770> ' + ruta_message)
         await message.channel.send('<@618849773906165770> ' + ruta_url)
     
