@@ -86,8 +86,8 @@ async def on_message(message):
         await message.channel.send('それもまたアイカツにゃ')
 
     if message.content == '/ruta':
-        ruta_message = "「クソリプかるた」とは読み手が読む「投稿文」に対して、正しい「クソリプ」の札を取り合うかるた遊びです。参加者はクソリプを投稿した人の気持ちになって、「自分ならどんなクソリプをするか」を考えながら札を選びます。クソリプする側の心情をすばやく理解し、たくさんのクソリプを取りましょう。"
-        ruta_url = "https://www.amazon.co.jp/dp/B08BZQK78R"
+        ruta_message = "良質吟味、おいしさが最良のサービス・東京都内を中心に展開する高級焼肉店."
+        ruta_url = "https://www.jojoen.co.jp/"
         await message.channel.send('<@618849773906165770> ' + ruta_message)
         await message.channel.send('<@618849773906165770> ' + ruta_url)
 
