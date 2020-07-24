@@ -92,7 +92,7 @@ async def on_message(message):
         await message.channel.send('<@618849773906165770> ' + ruta_url)
 
     if message.content == '/goyo':
-        await message.channel.send('知育菓子でも作ってろよ')
+        await message.channel.send('知育菓子でも作ってろよ。')
     
     if message.content == '/tokyo':
         today, tomorrow = get_weather('130010') # 東京は 130010
