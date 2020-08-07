@@ -86,7 +86,7 @@ async def on_message(message):
         await message.channel.send('それもまたアイカツにゃ')
 
     if message.content == '/ruta':
-        ruta_message = "給付金で焼肉にゃ"
+        ruta_message = "給付金で焼肉にゃ！"
         ruta_url = "https://www.jojoen.co.jp/"
         await message.channel.send('<@618849773906165770> ' + ruta_message)
         await message.channel.send('<@618849773906165770> ' + ruta_url)
