@@ -71,7 +71,7 @@ async def on_message(message):
 
     # [TODO]肥大化してきたら分割する。
     if message.content == '/miku':
-        await message.channel.send('にゃーん')
+        await message.channel.send('にゃーん♡')
     
     if message.content == '/mikunyan':
         await message.channel.send('なぁに%sチャン' % message.author.name)
