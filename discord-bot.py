@@ -75,6 +75,9 @@ async def on_message(message):
     
     if message.content == '/mikunyan':
         await message.channel.send('なぁに%sチャン' % message.author.name)
+    
+    if message.content == '/maekawasan':
+        await message.channel.send('？？「真面目な前川があんな格好を……」')
 
     if message.content == '/riina':
         await message.channel.send('りーなチャン！？')
