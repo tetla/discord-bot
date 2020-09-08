@@ -89,11 +89,14 @@ async def on_message(message):
         await message.channel.send('それもまたアイカツにゃ')
 
     if message.content == '/ruta':
-        ruta_message = "美しく丁寧な所作と情熱が織り成す、珠玉の握り。世界が認めた鮨のたおやかなる余韻に浸る。"
-        ruta_url = "https://tabelog.com/tokyo/A1308/A130802/13015251/"
+        ruta_message = "The 1998 Petrus is unquestionably a fabulous effort boasting a dense plum/purple color as well as an extraordinary nose of black fruits intermixed with caramel, mocha, and vanilla. Exceptionally pure, super-concentrated, and extremely full-bodied, with admirable underlying acidity as well as sweet tannin, it reveals a superb mid-palate in addition to the luxurious richness for which this great property is known. The finish lasts for 40-45 seconds. Patience will definitely be required. Production was 2,400 cases, about 1,600 cases less than normal. Anticipated maturity: 2008-2040"
+        ruta_url = "https://www.millesimes.com/Petrus_1998_(Pomerol,_vin_rouge)"
         
         await message.channel.send('<@618849773906165770> ' + ruta_message)
         await message.channel.send('<@618849773906165770> ' + ruta_url)
+
+    if message.content == '/petrus':
+        await message.channel.send("Petrus est un vin français d’appellation d’origine contrôlée (AOC) de la région viticole de Pomerol près de Bordeaux, dont il a l'appellation. Bien que les vins de la commune de Pomerol ne fassent pas partie de la classification officielle des vins de Bordeaux, Petrus est considéré comme un des plus grands bordeaux au même titre que des grands crus classés du Médoc tels que Château Latour, Château Lafite-Rothschild, Château Mouton Rothschild, Château Margaux, ou un Pessac-Léognan du Château Haut-Brion et des vins de Saint-Émilion comme Château Angélus, Château Ausone, Château Cheval Blanc.")
 
     if message.content == '/goyo':
         await message.channel.send('知育菓子でも作ってろよ。')
