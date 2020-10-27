@@ -19,10 +19,6 @@ PROJECT_NAME = os.environ["PROJECT_NAME"]
 INSTANCE_ZONE = os.environ["INSTANCE_ZONE"]
 INSTANCE_NAME = os.environ["INSTANCE_NAME"]
 
-# load markov model
-with open('model/maekawa_serif.json') as f:
-    markov_json = f.read()
-
 @client.event
 async def on_ready():
     print("起動したにゃ")
@@ -113,9 +109,26 @@ async def on_message(message):
     if message.content == '/kagawa':
         await message.channel.send('ゲームは1日1時間までにゃ')
     
+    '''
     if message.content == '/talk':
-        sentence = markov.make_sentences(markov_json)
+        # load markov model
+        with open('model/maekawa.json') as f:
+            markov_json = f.read()
+            sentence = markov.make_sentences(markov_json)
         await message.channel.send(sentence)
+    '''
+    
+    if message.content.startswith('/talk'):
+        commands = message.content.split(' ')
+        chara = commands[1] if len(commands) > 1 else 'miku'
+        try:
+            with open(f'model/{chara}.json') as f:
+                markov_json = f.read()
+                sentence = markov.make_sentences(markov_json)
+                await message.channel.send(sentence)
+        except Exception as e:
+            print(e)
+            await message.channel.send('構文が間違ってるにゃ')
     
     if message.content == '/hash':
         hash_val = get_hash()
