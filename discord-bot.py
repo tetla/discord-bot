@@ -40,27 +40,7 @@ async def on_message(message):
         サーバのステータスを確認する
     """
     if message.content.startswith('/minecraft'):
-        command = message.content.split(' ')[1]
-        if command == 'start':
-            await message.channel.send('サーバを起動してるよ...')
-            start_server()
-            await message.channel.send('サーバが起動したよ！')
-        elif command == 'stop':
-            await message.channel.send('サーバを停止してるよ...')
-            stop_server()
-            await message.channel.send('サーバを停止したよ！')
-        elif command == 'status':
-            status = describe_server()
-            if 'RUNNING' in status:
-                await message.channel.send('サーバは動いてるにゃ')
-            elif 'STOPPING' in status:
-                await message.channel.send('サーバを止めてるとこだから焦るにゃ')
-            elif 'TERMINATED' in status:
-                await message.channel.send('サーバは止まってるにゃ')
-            elif 'STOPPED' in status:
-                await message.channel.send('サーバは止まってるにゃ')
-            else:
-                await message.channel.send('わからないにゃ～')
+        await message.channel.send('知責マイクラ鯖は死んだんだ\nいくら呼んでも帰っては来ないんだ\nもうあの時間は終わって、君も人生と向き合う時なんだ')
 
     # [TODO]肥大化してきたら分割する。
     if message.content == '/miku':
@@ -121,14 +101,21 @@ async def on_message(message):
     if message.content.startswith('/talk'):
         commands = message.content.split(' ')
         chara = commands[1] if len(commands) > 1 else 'miku'
-        try:
-            with open(f'model/{chara}.json') as f:
-                markov_json = f.read()
-                sentence = markov.make_sentences(markov_json)
-                await message.channel.send(sentence)
-        except Exception as e:
-            print(e)
-            await message.channel.send('構文が間違ってるにゃ')
+        if chara == 'list':
+            model_path = 'model/'
+            files = os.listdir(model_path)
+            model_name_list = [f.split('.')[0] for f in files if os.path.isfile(os.path.join(model_path, f))]
+            await message.channel.send(f'{len(model_name_list)} 人登録されてるにゃ。')
+            await message.channel.send(', '.join(model_name_list))
+        else:
+            try:
+                with open(f'model/{chara}.json') as f:
+                    markov_json = f.read()
+                    sentence = markov.make_sentences(markov_json)
+                    await message.channel.send(sentence)
+            except Exception as e:
+                print(e)
+                await message.channel.send('構文が間違ってるにゃ')
     
     if message.content == '/hash':
         hash_val = get_hash()
@@ -144,7 +131,7 @@ async def on_message(message):
 async def loop():
     # 現在の時刻
     now = datetime.now().strftime('%H:%M')
-    if now == '15:00': # 日本時間 00:00
+    if now == '00:00': # 日本時間 00:00
         channel = client.get_channel(689851923414646913) # みくちゃんのお部屋のID
         await channel.send('こんな時間までゲームしてるの？Pチャンすごーい！')
 
