@@ -39,10 +39,13 @@ async def on_message(message):
     status:
         サーバのステータスを確認する
     """
+    if message.content == '/help':
+        mes = "以下のコマンドで話しかけてね。\n" + get_commandlist()
+        await message.channel.send(mes)
+
     if message.content.startswith('/minecraft'):
         await message.channel.send('知責マイクラ鯖は死んだんだ\nいくら呼んでも帰っては来ないんだ\nもうあの時間は終わって、君も人生と向き合う時なんだ')
 
-    # [TODO]肥大化してきたら分割する。
     if message.content == '/miku':
         await message.channel.send('にゃーん')
     
@@ -89,15 +92,6 @@ async def on_message(message):
     if message.content == '/kagawa':
         await message.channel.send('ゲームは1日1時間までにゃ')
     
-    '''
-    if message.content == '/talk':
-        # load markov model
-        with open('model/maekawa.json') as f:
-            markov_json = f.read()
-            sentence = markov.make_sentences(markov_json)
-        await message.channel.send(sentence)
-    '''
-    
     if message.content.startswith('/talk'):
         commands = message.content.split(' ')
         chara = commands[1] if len(commands) > 1 else 'miku'
@@ -116,15 +110,6 @@ async def on_message(message):
             except Exception as e:
                 print(e)
                 await message.channel.send('構文が間違ってるにゃ')
-    
-    if message.content == '/hash':
-        hash_val = get_hash()
-        await message.channel.send(hash_val)
-    
-    if message.content == '/remaind':
-        hoge = remainder(message)
-        await message.channel.send(hoge)
-
 
 # 60秒に一回ループ
 @tasks.loop(seconds=60)
@@ -195,6 +180,9 @@ def remainder(message):
     _, command, date, time, content, user = message.content.split(' ')
     return user
 
+def get_commandlist():
+    command_list = ['/minecraft [start|stop|status]', '/help', '/talk [chara_name]','/kagawa','/nana','/omikuji','/tokyo','/goyo','/petrus','/ruta','/neet','/nero','/riina','/maekawasan','/mikunyan','/miku']
+    return "\n".join(sorted(command_list))
 
 
 # ループ処理実行
