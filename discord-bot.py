@@ -109,6 +109,7 @@ async def on_message(message):
                 with open(f'model/{chara}.json') as f:
                     markov_json = f.read()
                     sentence = markov.make_sentences(markov_json)
+                    talked_chara_name = chara
                     await message.channel.send(sentence)
             except Exception as e:
                 print(e)
@@ -120,12 +121,11 @@ async def on_message(message):
                 with open(f'model/{chara}.json') as f:
                     markov_json = f.read()
                     sentence = markov.make_sentences(markov_json)
+                    talked_chara_name = chara
                     await message.channel.send(sentence)
             except Exception as e:
                 print(e)
                 await message.channel.send('構文が間違ってるにゃ')
-
-        talked_chara_name = chara
 
 # 60秒に一回ループ
 @tasks.loop(seconds=60)
