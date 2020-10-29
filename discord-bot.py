@@ -19,6 +19,8 @@ PROJECT_NAME = os.environ["PROJECT_NAME"]
 INSTANCE_ZONE = os.environ["INSTANCE_ZONE"]
 INSTANCE_NAME = os.environ["INSTANCE_NAME"]
 
+talked_chara_name = ""
+
 @client.event
 async def on_ready():
     print("起動したにゃ")
@@ -93,14 +95,26 @@ async def on_message(message):
         await message.channel.send('ゲームは1日1時間までにゃ')
     
     if message.content.startswith('/talk'):
+        global talked_chara_name
         commands = message.content.split(' ')
         chara = commands[1] if len(commands) > 1 else 'miku'
         if chara == 'list':
-            model_path = 'model/'
-            files = os.listdir(model_path)
-            model_name_list = [f.split('.')[0] for f in files if os.path.isfile(os.path.join(model_path, f))]
+            model_name_list = get_modellist()
             await message.channel.send(f'{len(model_name_list)} 人登録されてるにゃ。')
             await message.channel.send(', '.join(model_name_list))
+        elif chara == 'rand':
+            model_name_list = get_modellist()
+            chara = random.choice(model_name_list)
+            try:
+                with open(f'model/{chara}.json') as f:
+                    markov_json = f.read()
+                    sentence = markov.make_sentences(markov_json)
+                    await message.channel.send(sentence)
+            except Exception as e:
+                print(e)
+                await message.channel.send('構文が間違ってるにゃ')
+        elif chara == 'past':
+            await message.channel.send(f'さっき喋ったのは{talked_chara_name}チャンにゃ')
         else:
             try:
                 with open(f'model/{chara}.json') as f:
@@ -110,6 +124,8 @@ async def on_message(message):
             except Exception as e:
                 print(e)
                 await message.channel.send('構文が間違ってるにゃ')
+
+        talked_chara_name = chara
 
 # 60秒に一回ループ
 @tasks.loop(seconds=60)
@@ -184,6 +200,11 @@ def get_commandlist():
     command_list = ['/minecraft [start|stop|status]', '/help', '/talk [chara_name]','/kagawa','/nana','/omikuji','/tokyo','/goyo','/petrus','/ruta','/neet','/nero','/riina','/maekawasan','/mikunyan','/miku']
     return "\n".join(sorted(command_list))
 
+def get_modellist():
+    model_path = 'model/'
+    files = os.listdir(model_path)
+    model_name_list = [f.split('.')[0] for f in files if os.path.isfile(os.path.join(model_path, f))]
+    return model_name_list
 
 # ループ処理実行
 loop.start()
